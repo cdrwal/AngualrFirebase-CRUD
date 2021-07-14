@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        "node_modules": true,
+        ".*": true,
+        "*.json": true,
+        "karma.conf.js": true,
+        "**/*.spec.ts": true,
+    }
+}
