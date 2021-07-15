@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "psa-taskly": {
+      "hosting": {
+        "Code": [
+          "psa-taskly"
+        ]
+      }
+    }
+  }
+}
