@@ -13,7 +13,7 @@ export class FireService {
   }
 
   getTasks() {
-    this.db.collection('tasks').snapshotChanges()
+    return this.db.collection('tasks').valueChanges()
   }
 
 }

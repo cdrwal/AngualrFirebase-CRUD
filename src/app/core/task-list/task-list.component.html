@@ -1,36 +1,18 @@
 <div class="card">
     <div class="card-body">
-        <ol class="list-group">
+        <ol class="list-group" *ngFor="let task of tasks$ | async">
+
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">
-                    <div class="fw-bold">Task Title</div>
-                    January 14, 2021
+                    <div class="fw-bold">{{ task.item.title }}</div>
+                    {{ task.item.date | date}}
                 </div>
                 <div class="d-grid gap-2 d-md-block">
                     <button class="btn btn-light btn-sm" type="button">✔️</button>
                     <button class="btn btn-light btn-sm" type="button">✏️</button>
                 </div>
             </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">Task Title</div>
-                    January 14, 2021
-                </div>
-                <div class="d-grid gap-2 d-md-block">
-                    <button class="btn btn-light btn-sm" type="button">✔️</button>
-                    <button class="btn btn-light btn-sm" type="button">✏️</button>
-                </div>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">Task Title</div>
-                    January 14, 2021
-                </div>
-                <div class="d-grid gap-2 d-md-block">
-                    <button class="btn btn-light btn-sm" type="button">✔️</button>
-                    <button class="btn btn-light btn-sm" type="button">✏️</button>
-                </div>
-            </li>
+
         </ol>
     </div>
 </div>

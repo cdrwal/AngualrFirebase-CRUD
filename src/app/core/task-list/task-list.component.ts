@@ -10,10 +10,12 @@ export class TaskListComponent implements OnInit {
 
   tasks$: any
 
-  constructor(private fireService: FireService) { }
+  constructor(private fireService: FireService) {
+  }
 
   ngOnInit(): void {
     this.tasks$ = this.fireService.getTasks()
+
   }
 
 }
