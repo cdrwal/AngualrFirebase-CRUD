@@ -5,13 +5,13 @@
         <form>
             <div class="mb-3">
                 <label class="form-label">Title</label>
-                <input type="text" class="form-control" maxlength="40" required>
+                <input required type="text" class="form-control" maxlength="40" name="title" [(ngModel)]="title">
             </div>
             <div class="mb-3">
                 <label class="form-label">Date</label>
-                <input type="date" class="form-control" required>
+                <input required type="date" class="form-control" name="date" [(ngModel)]="date">
             </div>
-            <button type="submit" class="btn btn-dark d-block mx-auto">Submit</button>
+            <button type="submit" class="btn btn-dark d-block mx-auto" (click)="locAddTask()">Submit</button>
         </form>
     </div>
 </div>

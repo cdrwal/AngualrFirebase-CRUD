@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FireService } from 'src/app/services/fire.service';
 
 @Component({
   selector: 'app-task-list',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskListComponent implements OnInit {
 
-  constructor() { }
+  tasks$: any
+
+  constructor(private fireService: FireService) { }
 
   ngOnInit(): void {
+    this.tasks$ = this.fireService.getTasks()
   }
 
 }

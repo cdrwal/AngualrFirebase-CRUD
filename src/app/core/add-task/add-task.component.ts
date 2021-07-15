@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FireService } from "src/app/services/fire.service";
 
 @Component({
   selector: 'app-add-task',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTaskComponent implements OnInit {
 
-  constructor() { }
+  title: any
+  date: any
+
+  constructor(private fireService: FireService) { }
 
   ngOnInit(): void {
+  }
+
+  locAddTask() {
+    this.fireService.addTask({title: this.title, date: this.date})
+    this.title = this.date = ''
   }
 
 }
