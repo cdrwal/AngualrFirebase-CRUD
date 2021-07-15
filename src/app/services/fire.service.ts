@@ -9,7 +9,7 @@ export class FireService {
   constructor(private db: AngularFirestore) { }
 
   addTask(item: any) {
-    this.db.collection('tasks').add({item})
+    this.db.collection('tasks').add(item)
   }
 
   getTasks() {
