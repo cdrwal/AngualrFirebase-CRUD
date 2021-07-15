@@ -8,14 +8,13 @@ import { FireService } from 'src/app/services/fire.service';
 })
 export class TaskListComponent implements OnInit {
 
-  tasks$: any
+  tasks$: any = []
 
   constructor(private fireService: FireService) {
   }
 
   ngOnInit(): void {
-    this.tasks$ = this.fireService.getTasks()
-
+    this.fireService.getTasks(this.tasks$)
   }
 
 }
