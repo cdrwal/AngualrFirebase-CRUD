@@ -12,16 +12,12 @@ export class FireService {
     this.db.collection('tasks').add(item)
   }
 
-  getTasks(localArray: any) {
+  getTasks() {
+    return this.db.collection('tasks').snapshotChanges()
+  }
 
-    this.db.collection('tasks').snapshotChanges().subscribe(a => {
-      a.forEach(b => {
-        let item: any = b.payload.doc.data();
-        item.id = b.payload.doc.id;
-        localArray.push(item)
-      })
-    })
-
+  completeTask(id: any) {
+    this.db.doc(`tasks/${id}`).delete()
   }
 
 }

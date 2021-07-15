@@ -8,13 +8,25 @@ import { FireService } from 'src/app/services/fire.service';
 })
 export class TaskListComponent implements OnInit {
 
-  tasks$: any = []
+  public tasks: any = []
 
   constructor(private fireService: FireService) {
+    
+    // Load Tasks Into Array
+    this.fireService.getTasks().subscribe(a => {
+      this.tasks = []
+      a.forEach(b => {
+        let item: any = b.payload.doc.data();
+        item.id = b.payload.doc.id;
+        this.tasks.push(item)
+      })
+    })
+
   }
 
-  ngOnInit(): void {
-    this.fireService.getTasks(this.tasks$)
-  }
+  ngOnInit(): void { }
 
+  locCompleteTask(id:any) {
+    this.fireService.completeTask(id)
+  }
 }

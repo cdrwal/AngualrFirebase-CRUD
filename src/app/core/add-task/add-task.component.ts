@@ -8,8 +8,8 @@ import { FireService } from "src/app/services/fire.service";
 })
 export class AddTaskComponent implements OnInit {
 
-  title: any
-  date: any
+  title: any = ''
+  date: any = ''
 
   constructor(private fireService: FireService) { }
 
@@ -17,8 +17,14 @@ export class AddTaskComponent implements OnInit {
   }
 
   locAddTask() {
-    this.fireService.addTask({title: this.title, date: this.date})
-    this.title = this.date = ''
+
+    if (this.title == '' || this.date == '') {
+      alert("Date and/or Title cannot be empty.")
+    } else {
+      this.fireService.addTask({ title: this.title, date: this.date })
+      this.title = this.date = ''
+    }
+
   }
 
 }
