@@ -3,14 +3,35 @@
         <ol class="list-group" *ngFor="let task of tasks">
 
             <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">{{ task.title }}</div>
-                    {{ task.date | date}} - {{task.id}}
-                </div>
-                <div class="d-grid gap-2 d-md-block">
-                    <button class="btn btn-light btn-sm" type="button" (click)="locCompleteTask(task.id)">✔️</button>
-                    <button class="btn btn-light btn-sm" type="button">✏️</button>
-                </div>
+
+                <ng-container *ngIf="task.defaultState; else editMode">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">{{ task.title }}</div>
+                        {{ task.date | date}}
+                    </div>
+                    <div class="d-grid gap-2 d-md-block">
+                        <button class="btn btn-light btn-sm" type="button"
+                            (click)="locCompleteTask(task.id)">✔️</button>
+                        <button class="btn btn-light btn-sm" type="button"
+                            (click)="task.defaultState = false">✏️</button>
+                    </div>
+                </ng-container>
+
+
+                <ng-template #editMode>
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">
+                            <input type="text" id="newTitle" value="{{ task.title }}">
+                        </div>
+                        <input type="date" id="newDate" value="{{ task.date }}">
+                    </div>
+                    <div class="d-grid gap-2 d-md-block">
+                        <button class="btn btn-light btn-sm" type="button"
+                            (click)="locEditTask(task.id, {title: winDoc.getElementById('newTitle').value, date: winDoc.getElementById('newDate').value})">✔️</button>
+                        <button class="btn btn-light btn-sm" type="button" (click)="task.defaultState = true">❌</button>
+                    </div>
+                </ng-template>
+
             </li>
 
         </ol>

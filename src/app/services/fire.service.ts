@@ -19,5 +19,9 @@ export class FireService {
   completeTask(id: any) {
     this.db.doc(`tasks/${id}`).delete()
   }
+  
+  editTask(id: any, item: any) {
+    this.db.doc(`tasks/${id}`).update(item)
+  }
 
 }

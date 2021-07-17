@@ -10,6 +10,8 @@ export class TaskListComponent implements OnInit {
 
   public tasks: any = []
 
+  winDoc: any = document
+
   constructor(private fireService: FireService) {
     
     // Load Tasks Into Array
@@ -18,6 +20,7 @@ export class TaskListComponent implements OnInit {
       a.forEach(b => {
         let item: any = b.payload.doc.data();
         item.id = b.payload.doc.id;
+        item.defaultState = true
         this.tasks.push(item)
       })
     })
@@ -29,4 +32,9 @@ export class TaskListComponent implements OnInit {
   locCompleteTask(id:any) {
     this.fireService.completeTask(id)
   }
+
+  locEditTask(id: any, task: any) {
+    this.fireService.editTask(id, task)
+  }
+
 }
