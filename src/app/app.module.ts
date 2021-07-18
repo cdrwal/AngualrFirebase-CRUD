@@ -15,7 +15,9 @@ import { EngineComponent } from './pages/engine/engine.component';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import { AuthGuard } from './services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,10 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,11 +1,24 @@
 <div class="row expand align-items-center">
     <div class="col-6 offset-3">
-        <div class="card">
+        <div class="card h-auto">
+
             <div class="card-body">
-                
-                <h3 class="text-center">Log In</h3>
-                <hr>
-                
+
+                <ng-container *ngIf="auth.user$ | async; then authenticated; else guest"></ng-container>
+
+                <ng-template #guest>
+                    <h3 class="text-center">Log In</h3>
+                    <hr>
+                    <button class="btn btn-dark d-block mx-auto my-2" (click)="auth.googleSignin()">Login with Google</button>
+                </ng-template>
+
+                <ng-template #authenticated>
+                    <div *ngIf="auth.user$ | async as user">
+                        <h3 class="text-center">Hello!</h3>
+                        <hr>
+                        <a class="btn btn-dark d-block mx-auto my-2" [routerLink]="['/']">Go To App</a>
+                    </div>
+                </ng-template>
 
             </div>
         </div>

@@ -13,23 +13,26 @@ export class TaskListComponent implements OnInit {
   winDoc: any = document
 
   constructor(private fireService: FireService) {
-    
-    // Load Tasks Into Array
-    this.fireService.getTasks().subscribe(a => {
-      this.tasks = []
-      a.forEach(b => {
-        let item: any = b.payload.doc.data();
-        item.id = b.payload.doc.id;
-        item.defaultState = true
-        this.tasks.push(item)
+
+    this.fireService.getTasks()
+      .subscribe((a: any) => {
+        this.tasks = []
+        a.forEach((b: any) => {
+          let item: any = b.payload.doc.data();
+          item.id = b.payload.doc.id;
+          item.defaultState = true
+          this.tasks.push(item)
+        })
       })
-    })
 
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    // Load Tasks Into Array
 
-  locCompleteTask(id:any) {
+  }
+
+  locCompleteTask(id: any) {
     this.fireService.completeTask(id)
   }
 
