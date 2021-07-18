@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { switchMap } from 'rxjs/operators';
 import { AuthService } from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class FireService {
 
-  // TODO: Fix the await for User!!
-  user: any = this.auth.user$.subscribe((x:any) => this.user = x)
+  user: any = this.auth.user$.subscribe((x: any) => this.user = x)
 
-  constructor(private db: AngularFirestore, private auth: AuthService) { 
+  constructor(private db: AngularFirestore, private auth: AuthService) {
   }
 
   addTask(item: any) {
@@ -18,7 +19,9 @@ export class FireService {
   }
 
   getTasks() {
-    return this.db.collection(`users/${this.user.uid}/tasks`).snapshotChanges()
+    return this.auth.user$.pipe(
+      switchMap((value: any) => this.db.collection(`users/${value.uid}/tasks`).snapshotChanges())
+    )
   }
 
   completeTask(id: any) {
