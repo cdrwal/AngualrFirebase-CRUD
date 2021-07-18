@@ -6,4 +6,4 @@ Frontend JS: Angular
 
 Frontend Styling: Bootstrap
 
-Backend: AngularFire2 (Firebase)
+Backend: Firebase
