@@ -15,14 +15,8 @@ export class TaskListComponent implements OnInit {
   constructor(private fireService: FireService) { }
 
   ngOnInit(): void {
-    this.fireService.getTasks().subscribe((a: any) => {
-      this.tasks = []
-      a.forEach((b: any) => {
-        let item: any = b.payload.doc.data();
-        item.id = b.payload.doc.id;
-        item.defaultState = true
-        this.tasks.push(item)
-      })
+    this.fireService.getTasks().subscribe((obsPayload: any) => {
+      this.tasks = obsPayload;
     })
   }
 

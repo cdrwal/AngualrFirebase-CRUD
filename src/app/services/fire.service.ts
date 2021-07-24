@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import { AuthService } from "./auth.service";
 
 @Injectable({
@@ -20,7 +20,15 @@ export class FireService {
 
   getTasks() {
     return this.auth.user$.pipe(
-      switchMap((value: any) => this.db.collection(`users/${value.uid}/tasks`).snapshotChanges())
+      switchMap((x: any) =>
+        this.db.collection(`users/${x.uid}/tasks`).snapshotChanges()),
+      map((y: any) =>
+        y.map((inner: any) => {
+          let item: any = inner.payload.doc.data();
+          item.id = inner.payload.doc.id;
+          item.defaultState = true;
+          return item;
+        }))
     )
   }
 
